@@ -22,7 +22,7 @@ namespace Reinco
         #region +---- Atributos ----+
         public static string opcional = "(Opcional)";
         public static string ip;
-        public static string puerto = "80";
+        public static string puerto = "8082";
         public VentanaMensaje mensaje;
         #endregion
 
@@ -50,12 +50,32 @@ namespace Reinco
             mensaje = new VentanaMensaje();
             //ObtenerIpAsync();
             //ip = "192.168.1.111";
-            //ip = "192.168.1.43";
-            ip = "190.117.145.7";
+            ip = "192.168.1.43";
+            //ip = "190.117.145.7";
             //ip = "190.42.122.110";
 
             InitializeComponent();
-            MainPage = new LoginPage();
+            DependencyService.Get<ISaveAndLoad>().SaveText("temp.txt", "");
+            String h = DependencyService.Get<ISaveAndLoad>().LoadText("temp.txt");
+            if (h != null)
+            {
+                string[] aux = h.Split('%');
+
+                if (aux.Length == 5)
+                {
+                    Application.Current.Properties["idUsuario"] = aux[2];
+                    Application.Current.Properties["nombresApellidos"] = aux[3];
+                    Application.Current.Properties["cargoUsuario"] = aux[4];
+
+                    MainPage = new MainPage();
+                }
+                else
+                    MainPage = new LoginPage();
+
+            }
+            else
+                MainPage = new LoginPage();
+            
             Current.Properties["direccionApp"] = "";
         }
 

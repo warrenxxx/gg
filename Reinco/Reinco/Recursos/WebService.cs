@@ -178,7 +178,6 @@ namespace Reinco.Recursos
                 // Formando la URL unicode resource lacator
                 HttpClient client = new HttpClient();
                 string url = string.Format("{0}/{1}/{2}", this.urlBase, servicio, metodo);
-
                 // Encodificando Para el metodo POST
                 var body = new List<KeyValuePair<string, string>>();
                 for (int i = 0; i < variables.Length / 2; i++)

@@ -25,6 +25,20 @@
                     BackgroundColor="{StaticResource Color1}"
                     TextColor="{StaticResource Color5}">
                 </Button>
+                <Switch
+                    HorizontalOptions="Center"
+                    Toggled="Switch_Toggled"
+                    IsToggled="True"
+                >
+                </Switch>
+                <Label
+                        x:Name="lblRecordar"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        TextColor="Navy"
+                        Text="Recordar Contraseña"
+                        >
+                </Label>
 
                 <!-- Recuperar Contraseña -->
                 <!--<Label 

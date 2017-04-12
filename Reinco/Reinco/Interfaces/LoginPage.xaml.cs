@@ -106,6 +106,9 @@ namespace Reinco.Interfaces
                                 Application.Current.Properties["idUsuario"] = usuario.idUsuario;
                                 Application.Current.Properties["nombresApellidos"] = usuario.nombresApellidos;
                                 Application.Current.Properties["cargoUsuario"] = usuario.cargo;
+                                string aux = usuario.usuario + "%" + password.Text + "%" + usuario.idUsuario + "%" + usuario.nombresApellidos + "%" + usuario.cargo;
+                                guardar(aux);
+
                                 break;
                             }
                             else if(usuario.cargo == "Asistente")
@@ -113,12 +116,18 @@ namespace Reinco.Interfaces
                                 Application.Current.Properties["idUsuario"] = usuario.idUsuario;
                                 Application.Current.Properties["nombresApellidos"] = usuario.nombresApellidos;
                                 Application.Current.Properties["cargoUsuario"] = usuario.cargo;
+                                string aux = usuario.usuario + "%" + password.Text + "%" + usuario.idUsuario + "%" + usuario.nombresApellidos + "%" + usuario.cargo;
+                                guardar(aux);
+
                                 break;
                             }else if(usuario.cargo == "Responsable")
                             {
                                 Application.Current.Properties["idUsuario"] = usuario.idUsuario;
                                 Application.Current.Properties["nombresApellidos"] = usuario.nombresApellidos;
                                 Application.Current.Properties["cargoUsuario"] = usuario.cargo;
+                                string aux = usuario.usuario + "%" + password.Text + "%" + usuario.idUsuario + "%" + usuario.nombresApellidos + "%" + usuario.cargo;
+                                guardar(aux);
+
                             }
                         }
                         //Application.Current.Properties["cargoUsuario2"] = result
@@ -167,6 +176,24 @@ namespace Reinco.Interfaces
                 IsRunning = true;
             }
         }
+        public void guardar(string a)
+        {
+            if (recordar)
+                DependencyService.Get<ISaveAndLoad>().SaveText("temp.txt", a);
+        }
+        bool recordar = true;
 
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            recordar = e.Value;
+            if (e.Value == true)
+            { 
+                lblRecordar.Text = "Recordar Contraseña";
+            }
+            else
+            {
+                lblRecordar.Text = "";
+            }
+        }
     }
 }
